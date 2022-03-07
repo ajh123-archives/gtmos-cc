@@ -1,25 +1,24 @@
 local program = require "programs"
-local gtmos_env = require "gtmos_env"
 
-program.new(function(_)
-  gtmos_env.shell.run("shell")
-end, 15, 10, 25, 10, "Shell")
+program.new(function(env)
+  env.shell.run("shell")
+end, 2, 3, 25, 10, "Shell")
 
-program.new(function(prog)
+program.new(function(env)
   while true do
-    gtmos_env.term.setBackgroundColor(gtmos_env.colors.white)
-    gtmos_env.term.setTextColor(gtmos_env.colors.black)
-    gtmos_env.term.clear()
-    gtmos_env.term.setCursorPos(1, 1)
+    env.term.setBackgroundColor(env.colors.white)
+    env.term.setTextColor(env.colors.black)
+    env.term.clear()
+    env.term.setCursorPos(1, 1)
 
-    local progs = prog.getProcesses()
+    local progs = env.gtmos.getProcesses()
     for programNum = 1, #progs do
-      local loop_prog = progs[programNum]
-      print(loop_prog.getProcessId(), loop_prog.getProcessName())
+     local loop_prog = progs[programNum]
+     print(loop_prog.getProcessId(), loop_prog.getProcessName())
     end
     coroutine.yield()
   end
-end, 35, 10, 15, 5, "Tasks")
+end, 30, 5, 15, 5, "Tasks")
 
 while true do
   term.setBackgroundColor(colors.cyan)

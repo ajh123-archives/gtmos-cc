@@ -60,9 +60,10 @@ programs.new = function(func, x, y, w, h, name)
 
   local function coroutine_func()
     _ENV = gtmos_env
+    _ENV.gtmos = program.prog
     setfenv(func, _ENV)
 
-    local ok, mess = pcall(func, program.prog)
+    local ok, mess = pcall(func, _ENV)
     if not ok then
       while true do
         term.setBackgroundColor(colors.red)
