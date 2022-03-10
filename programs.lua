@@ -3,6 +3,7 @@ local programs = {}
 local processes = {}
 local userEvents = {"mouse_click", "mouse_up", "mouse_drag", "char", "key", "monitor_touch", "key_up", "paste", "terminate"}
 local gtmos_env = require "gtmos_env"
+local gtmos_lddfm = require "lddfm"
 
 
 programs.new = function(func, x, y, w, h, name)
@@ -61,7 +62,8 @@ programs.new = function(func, x, y, w, h, name)
   local function coroutine_func()
     env = gtmos_env
     env.gtmos = program.prog
-    
+    env.gtmos.lddfm = gtmos_lddfm
+ 
     local ok, mess = pcall(func, env)
     if not ok then
       while true do
