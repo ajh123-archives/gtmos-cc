@@ -22,6 +22,7 @@ local env = {
   keys = keys,
   io = io,
   rs = rs,
+  disk = disk,
   parallel = parallel,
   printError = printError,
   debug = debug,

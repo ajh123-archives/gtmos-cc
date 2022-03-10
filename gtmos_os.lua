@@ -37,24 +37,24 @@ function gos.run(environment, programPath, ...)
     setfenv(func, _ENV)
     local ok, err = pcall(func, unpack(args))
     if err then
-      -- msg = err
-      -- if (type(err) == "table") then
-      --   msg = textutils.serialize(err)
-      --   -- msg = ""
-      --   -- local function getTable(table)
-      --   --   local out = ""
-      --   --   for _, v in pairs(table) do
-      --   --     if (type(v) == "table") then
-      --   --       out = getTable(v)
-      --   --     else
-      --   --       out = out..tostring(v)
-      --   --     end
-      --   --   end
-      --   --   return out
-      --   -- end
-      --   -- msg = getTable(err)
-      -- end
-      error(tostring({programPath, tostring(err)}))
+      msg = err
+      if (type(err) == "table") then
+        msg = textutils.serialize(err)
+        -- msg = ""
+        -- local function getTable(table)
+        --   local out = ""
+        --   for _, v in pairs(table) do
+        --     if (type(v) == "table") then
+        --       out = getTable(v)
+        --     else
+        --       out = out..tostring(v)
+        --     end
+        --   end
+        --   return out
+        -- end
+        -- msg = getTable(err)
+      end
+      error(programPath.." "..tostring(msg))
     end
     return ok
   else
