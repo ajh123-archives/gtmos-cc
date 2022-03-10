@@ -2,6 +2,7 @@ local shell = require "gtmos_shell"
 local os = require "gtmos_os"
 
 local env = {
+  _HOST = _HOST,
   ipairs = ipairs,
   next = next,
   pairs = pairs,
@@ -11,6 +12,24 @@ local env = {
   type = type,
   unpack = unpack,
   print = print,
+  error = error,
+  dofile = dofile,
+  select = select,
+  setmetatable = setmetatable,
+  getmetatable = getmetatable,
+  load = load,
+  keys = keys,
+  io = io,
+  rs = rs,
+  printError = printError,
+  debug = debug,
+  peripheral = peripheral,
+  textutils = textutils,
+  fs = fs,
+  read = read,
+  sleep = sleep,
+  settings = settings,
+  write = write,
   colors = colors,
   colours = colours,
   term = term,
@@ -21,5 +40,6 @@ local env = {
   math = math,
   os = os
 }
-
+env._G = env
+env._ENV = env
 return env

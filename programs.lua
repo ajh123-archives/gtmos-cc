@@ -59,11 +59,10 @@ programs.new = function(func, x, y, w, h, name)
   }
 
   local function coroutine_func()
-    _ENV = gtmos_env
-    _ENV.gtmos = program.prog
-    setfenv(func, _ENV)
-
-    local ok, mess = pcall(func, _ENV)
+    env = gtmos_env
+    env.gtmos = program.prog
+    
+    local ok, mess = pcall(func, env)
     if not ok then
       while true do
         term.setBackgroundColor(colors.red)
@@ -184,8 +183,9 @@ local updateProgram = function(programNum, event, var1, var2, var3, var4, var5, 
     term.setTextColor(colors.orange)
     term.write("x")
 
-    local pw, ph = program.term.getSize() 
-    local px, py = program.term.getCursorPos() 
+    --draw text cursor
+    local pw, ph = program.term.getSize()
+    local px, py = program.term.getCursorPos()
     local pColor = program.term.getTextColor()
     local pBlink = program.term.getCursorBlink()
     term.setTextColor(pColor)

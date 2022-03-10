@@ -7,13 +7,11 @@ local make_package = dofile("/rom/modules/main/cc/require.lua").make
 
 local multishell = multishell
 local parentShell = shell
-local parentTerm = term.current()
 
 if multishell then
   multishell.setTitle(multishell.getCurrent(), "shell")
 end
 
-local bExit = false
 local sDir = parentShell and parentShell.dir() or ""
 local sPath = parentShell and parentShell.path() or ".:/rom/programs"
 local tAliases = parentShell and parentShell.aliases() or {}
@@ -81,7 +79,7 @@ function gshell.execute(command, ...)
       end
     end
     return result
-    else
+  else
     printError("No such program")
     return false
   end
@@ -97,7 +95,6 @@ function gshell.run(...)
 end
 
 function gshell.exit()
-  bExit = true
   shell.exit()
 end
 
