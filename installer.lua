@@ -6,6 +6,9 @@ This requires ElvishJerricco's JSON parsing API.
 Direct link: http://pastebin.com/raw.php?i=4nRg9CHU
 ]]--
 
+shell.run("wget https://github.com/ajh123-development/gtmos-cc/raw/main/json.lua /tmp/gtmos/json")
+os.loadAPI("/tmp/gtmos/json")
+
 -- Edit these variables to use preset mode.
 -- Whether to download the files asynchronously (huge speed benefits, will also retry failed files)
 -- If false will download the files one by one and use the old output (List each file name as it's downloaded) instead of the progress bar
@@ -133,3 +136,4 @@ if data.message and data.message == "Not found" then error("Invalid repository",
 	end
 end
 preset.done()
+os.unloadAPI("/tmp/gtmos/json")
