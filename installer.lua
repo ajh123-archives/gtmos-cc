@@ -7,6 +7,8 @@ for i, arg in ipairs(args) do
   print(i .. ". " .. arg)
 end
 
+print(args)
+
 if args.remove then
   fs.delete("/gtmos")
 end
