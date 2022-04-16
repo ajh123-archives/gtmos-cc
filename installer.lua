@@ -1,4 +1,4 @@
-local args = dofile("argser.lua")(...)
+local args = dofile("/gtmos/argser.lua")(...)
   :named("remove", false, "boolean"):alias("r"):default(false)
   :named("setup", false, "boolean"):alias("s"):default(false)
   :parse().args
